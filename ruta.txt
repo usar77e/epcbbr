@@ -1,0 +1,6 @@
+inicio del proyecto
+-----tablas------
+->Proucto
+->Marca
+->Tipo_producto
+->Detalle_producto
