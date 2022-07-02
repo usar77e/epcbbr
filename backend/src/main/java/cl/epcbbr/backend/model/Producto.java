@@ -27,7 +27,7 @@ public class Producto {
     public Producto() {
     }
 
-    @OneToOne(mappedBy = "producto")
+    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private DetalleProducto detalleProducto;
 
     public Producto(Integer idProducto) {

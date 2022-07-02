@@ -1,5 +1,6 @@
 package cl.epcbbr.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -12,8 +13,9 @@ public class DetalleProducto {
     @Column(name = "id_detalleproducto")
     private Integer idDetalleproducto;
 
-    @OneToOne
-    @JoinColumn(name = "id_producto")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
     private Producto producto;
     @NotNull
     @Column(name = "cantidad")
