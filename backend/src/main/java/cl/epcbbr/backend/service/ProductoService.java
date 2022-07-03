@@ -16,4 +16,6 @@ public interface ProductoService extends ICRUD<Producto>{
     List<DetalleProductosDTO> findAllProdDetDto();
 
     List<TipoProductosDTO> findTipoProductoDto();
+
+
 }
