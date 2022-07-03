@@ -1,5 +1,6 @@
 package cl.epcbbr.backend.controller;
 
+import cl.epcbbr.backend.dto.ProductosTotalDTO;
 import cl.epcbbr.backend.model.Producto;
 import cl.epcbbr.backend.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,14 @@ public class ProductoController {
     public @ResponseBody Producto save(@RequestBody Producto producto){
         return productoService.save(producto);
     }
+
+    @GetMapping("/dtoprod")
+    public List<ProductosTotalDTO> findAllDto(){
+        return productoService.findAllDto();
+    }
+
+    public List<ProductosTotalDTO> findMarcaProdDto(){
+        return productoService.findMarcaProdDto();
+    }
+
 }
