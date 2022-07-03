@@ -1,6 +1,6 @@
 package cl.epcbbr.backend.service.impl;
 
-import cl.epcbbr.backend.dto.ProductosTotalDTO;
+import cl.epcbbr.backend.dto.*;
 import cl.epcbbr.backend.exception.ModelNoFoundException;
 import cl.epcbbr.backend.model.Producto;
 import cl.epcbbr.backend.repository.ProductoRepository;
@@ -70,15 +70,58 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public List<ProductosTotalDTO> findMarcaProdDto() {
-        List<ProductosTotalDTO> dtos = new ArrayList<>();
+    public List<MarcaProductosDTO> findMarcaProdDto() {
+        List<MarcaProductosDTO> dtos = new ArrayList<>();
         List<Producto> productos = productoRepository.findAll();
         productos.forEach(producto -> {
-            ProductosTotalDTO prodDTO = new ProductosTotalDTO();
-            prodDTO.setNombre(producto.getNombre());
-            prodDTO.setModelo(producto.getModelo());
-            //prodDTO.setMarca();
-            dtos.add(prodDTO);
+            MarcaProductosDTO mProdDTO = new MarcaProductosDTO();
+            mProdDTO.setNombre(producto.getNombre());
+            mProdDTO.setModelo(producto.getModelo());
+            mProdDTO.setMarca(producto.getMarca());
+            dtos.add(mProdDTO);
+        });
+        return dtos;
+    }
+
+    @Override
+    public List<ProductosDTO> findAllProdDto() {
+        List<ProductosDTO> dtos = new ArrayList<>();
+        List<Producto> productos = productoRepository.findAll();
+        productos.forEach(producto -> {
+            ProductosDTO pdtos = new ProductosDTO();
+            pdtos.setNombre(producto.getNombre());
+            pdtos.setModelo(producto.getModelo());
+            pdtos.setMarca(producto.getMarca());
+            pdtos.setTipoProducto(producto.getTipoProducto());
+            dtos.add(pdtos);
+        });
+        return dtos;
+    }
+
+    @Override
+    public List<DetalleProductosDTO> findAllProdDetDto(){
+        List<DetalleProductosDTO> dto = new ArrayList<>();
+        List<Producto> productos = productoRepository.findAll();
+        productos.forEach(producto -> {
+            DetalleProductosDTO Ddto = new DetalleProductosDTO();
+            Ddto.setNombre(producto.getNombre());
+            Ddto.setModelo(producto.getModelo());
+            Ddto.setDetalleProducto(producto.getDetalleProducto());
+            dto.add(Ddto);
+        });
+        return dto;
+    }
+
+    @Override
+    public List<TipoProductosDTO> findTipoProductoDto(){
+        List<TipoProductosDTO> dtos = new ArrayList<>();
+        List<Producto> productos = productoRepository.findAll();
+        productos.forEach(producto -> {
+            TipoProductosDTO Tdto = new TipoProductosDTO();
+            Tdto.setNombre(producto.getNombre());
+            Tdto.setModelo(producto.getModelo());
+            Tdto.setTipoProducto(producto.getTipoProducto());
+            dtos.add(Tdto);
         });
         return dtos;
     }
