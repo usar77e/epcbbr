@@ -88,6 +88,7 @@ public class ProductoServiceImpl implements ProductoService {
         List<Producto> productos = productoRepository.findAll();
         productos.forEach(producto -> {
             ProductosDTO pdtos = new ProductosDTO();
+            pdtos.setIdProducto(producto.getIdProducto());
             pdtos.setNombre(producto.getNombre());
             pdtos.setModelo(producto.getModelo());
             pdtos.setMarca(producto.getMarca());

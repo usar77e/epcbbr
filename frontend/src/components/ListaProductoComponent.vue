@@ -8,13 +8,17 @@
             <th>Id</th>
             <th>Nombre</th>
             <th>Modelo</th>
+            <th>Marca</th>
+            <th>Tipo de producto</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Dato ID</td>
-            <td>Dato nombre</td>
-            <td>Dato modelo</td>
+          <tr v-for="producto in productos" v-bind:key="producto.idProducto">
+            <td>{{producto.idProducto}}</td>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.modelo}}</td>
+            <td>{{producto.marca.nombre}}</td>
+            <td>{{producto.tipoProducto.nombre}}</td>
           </tr>
         </tbody>
       </table>
@@ -28,14 +32,16 @@ export default {
   name: "ListaProducto",
   data() {
     return {
-      INSTRUCTOR: "in28minutes"
+        productos: [],
+        message: null,
+        INSTRUCTOR: "in28minutes"
     };
   },
   methods: {
     refreshCourses() {
       ProductoDataService.retrieveAllCourses() //HARDCODED
         .then(response => {
-          console.log(response.data);
+          this.productos = response.data;
         });
     }
   },
