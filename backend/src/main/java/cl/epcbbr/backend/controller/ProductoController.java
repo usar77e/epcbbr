@@ -23,47 +23,56 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("")
     public ResponseEntity<List<Producto>> findAll(){
         return new ResponseEntity<>(productoService.findAll(), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public Producto findById(@PathVariable("id") Integer id){
         return productoService.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public @ResponseBody Producto save(@RequestBody Producto producto){
         return productoService.save(producto);
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtoprod")
     public List<ProductosTotalDTO> findAllDto(){
         return productoService.findAllDto();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtomprod")
     public List<MarcaProductosDTO> findMarcaProdDto(){
         return productoService.findMarcaProdDto();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtoprodsolo")
     public List<ProductosDTO> findAllProdDto(){
         return productoService.findAllProdDto();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtoprodet")
     public List<DetalleProductosDTO> findAllProdDetDto(){
         return productoService.findAllProdDetDto();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtotprod")
     public List<TipoProductosDTO> findTipoProductoDto(){
         return productoService.findTipoProductoDto();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/exportar")
     public void exportarExcel(HttpServletResponse response) throws  IOException {
         response.setContentType("application/octet-stream");
