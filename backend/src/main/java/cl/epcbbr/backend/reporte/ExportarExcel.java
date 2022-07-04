@@ -44,6 +44,14 @@ public class ExportarExcel {
         celda.setCellValue("Modelo");
         celda.setCellStyle(estilo);
 
+        celda = fila.createCell(3);
+        celda.setCellValue("Marca");
+        celda.setCellStyle(estilo);
+
+        celda = fila.createCell(4);
+        celda.setCellValue("Tipo Producto");
+        celda.setCellStyle(estilo);
+
     }
 
     private void escribirDatos(){
@@ -68,7 +76,17 @@ public class ExportarExcel {
             celda.setCellStyle(estilo);
 
             celda = fila.createCell(2);
-            celda.setCellValue(producto.getNombre());
+            celda.setCellValue(producto.getModelo());
+            hoja.autoSizeColumn(0);
+            celda.setCellStyle(estilo);
+
+            celda = fila.createCell(3);
+            celda.setCellValue(producto.getMarca().getNombre());
+            hoja.autoSizeColumn(0);
+            celda.setCellStyle(estilo);
+
+            celda = fila.createCell(4);
+            celda.setCellValue(producto.getTipoProducto().getNombre());
             hoja.autoSizeColumn(0);
             celda.setCellStyle(estilo);
         }

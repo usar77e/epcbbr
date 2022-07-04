@@ -2,6 +2,11 @@
   <div class="container">
     <h3>Todos los productos</h3>
     <div class="container">
+        <button class="btn btn-warning" v-on:click="exportarExcel()">
+    Exportar
+  </button>
+    </div>
+    <div class="container">
       <table class="table">
         <thead>
           <tr>
@@ -33,16 +38,19 @@ export default {
   data() {
     return {
         productos: [],
-        message: null,
-        INSTRUCTOR: "in28minutes"
+        message: null
     };
   },
   methods: {
     refreshCourses() {
-      ProductoDataService.retrieveAllCourses() //HARDCODED
+      ProductoDataService.retrieveAllProductos()
         .then(response => {
           this.productos = response.data;
         });
+    },
+    exportarExcel() {
+        ProductoDataService.retrieveExcel()
+        .then(console.log("presionado"));
     }
   },
   created() {
