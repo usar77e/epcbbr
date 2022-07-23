@@ -8,7 +8,18 @@ class ProductoDataService {
     return axios.get(`${INSTRUCTOR_API_URL}/dtoprodsolo`);
   }
   retrieveExcel(){
-    return axios.get(`${INSTRUCTOR_API_URL}/exportar`);
+    /*console.log("retrieve");
+    return axios.get(`${INSTRUCTOR_API_URL}/exportar`);*/
+
+    return axios({
+      url: `${INSTRUCTOR_API_URL}/exportar`,
+      method: 'GET',
+      responseType: 'blob'
+    }).then((response) => {
+      console.log(response);
+      new Blob([response.data]);
+    });
+
   }
 }
 
