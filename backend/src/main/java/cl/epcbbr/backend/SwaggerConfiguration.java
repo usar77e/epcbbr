@@ -14,11 +14,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
-		public static final Contact DEFAULT_CONTACT = new Contact("Escalab", "localhost:591",
+		public static final Contact DEFAULT_CONTACT = new Contact("Erick", "localhost:591",
 		      "eriquelme@bbr.cl");
 
-		  public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Mediapp Api Documentation",
-		      "Mediapp Api Documentation", "1.0", "PREMIUM", DEFAULT_CONTACT, "Apache 2.0",
+		  public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Documentacion EPCBBR API",
+		      "EPCBBR", "0.8", "PREMIUM", DEFAULT_CONTACT, "Apache 2.0",
 		      "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList<VendorExtension>());
 
 		  @Bean

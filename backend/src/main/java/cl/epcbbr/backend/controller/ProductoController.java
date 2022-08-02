@@ -4,6 +4,10 @@ import cl.epcbbr.backend.dto.*;
 import cl.epcbbr.backend.model.Producto;
 import cl.epcbbr.backend.reporte.ExportarExcel;
 import cl.epcbbr.backend.service.ProductoService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,18 +27,57 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @ApiOperation(value = "Obtiene la lista de todas los Productos")
+    @ApiResponses({
+      	@ApiResponse(message = "Operacion exitosa", code = 200),
+          @ApiResponse(message = "No encontrada", code = 404),
+          @ApiResponse(message = "Sin autorizacion", code = 401),
+          @ApiResponse(message = "Requiere autenticacion de Proxy", code = 407),
+          @ApiResponse(message = "Largo minimo requerido", code = 411),
+          @ApiResponse(message = "Falla interna servidor", code = 500),
+      	@ApiResponse(message = "No implementado", code = 501),
+      	@ApiResponse(message = "Respuesta invalida - Bad gateway", code = 502),
+      	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
+      	@ApiResponse(message = "Gateway Tinme out", code = 504)
+      	})
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("")
     public ResponseEntity<List<Producto>> findAll(){
         return new ResponseEntity<>(productoService.findAll(), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Buscar por valor")
+    @ApiResponses({
+      	@ApiResponse(message = "Operacion exitosa", code = 200),
+          @ApiResponse(message = "No encontrada", code = 404),
+          @ApiResponse(message = "Sin autorizacion", code = 401),
+          @ApiResponse(message = "Requiere autenticacion de Proxy", code = 407),
+          @ApiResponse(message = "Largo minimo requerido", code = 411),
+          @ApiResponse(message = "Falla interna servidor", code = 500),
+      	@ApiResponse(message = "No implementado", code = 501),
+      	@ApiResponse(message = "Respuesta invalida - Bad gateway", code = 502),
+      	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
+      	@ApiResponse(message = "Gateway Tinme out", code = 504)
+      	})
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public Producto findById(@PathVariable("id") Integer id){
         return productoService.findById(id);
     }
 
+    @ApiOperation(value = "Guarda el valor de un nuevo Producto")
+    @ApiResponses({
+      	@ApiResponse(message = "Operacion exitosa", code = 200),
+          @ApiResponse(message = "No encontrada", code = 404),
+          @ApiResponse(message = "Sin autorizacion", code = 401),
+          @ApiResponse(message = "Requiere autenticacion de Proxy", code = 407),
+          @ApiResponse(message = "Largo minimo requerido", code = 411),
+          @ApiResponse(message = "Falla interna servidor", code = 500),
+      	@ApiResponse(message = "No implementado", code = 501),
+      	@ApiResponse(message = "Respuesta invalida - Bad gateway", code = 502),
+      	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
+      	@ApiResponse(message = "Gateway Tinme out", code = 504)
+      	})
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public @ResponseBody Producto save(@RequestBody Producto producto){
@@ -42,6 +85,19 @@ public class ProductoController {
     }
 
 
+    @ApiOperation(value = "DTO permite traer solo valores de tablas asociadas a productos")
+    @ApiResponses({
+      	@ApiResponse(message = "Operacion exitosa", code = 200),
+          @ApiResponse(message = "No encontrada", code = 404),
+          @ApiResponse(message = "Sin autorizacion", code = 401),
+          @ApiResponse(message = "Requiere autenticacion de Proxy", code = 407),
+          @ApiResponse(message = "Largo minimo requerido", code = 411),
+          @ApiResponse(message = "Falla interna servidor", code = 500),
+      	@ApiResponse(message = "No implementado", code = 501),
+      	@ApiResponse(message = "Respuesta invalida - Bad gateway", code = 502),
+      	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
+      	@ApiResponse(message = "Gateway Tinme out", code = 504)
+      	})
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtoprod")
     public List<ProductosTotalDTO> findAllDto(){
@@ -66,12 +122,38 @@ public class ProductoController {
         return productoService.findAllProdDetDto();
     }
 
+    @ApiOperation(value = "DTO con tipo de producto - producto")
+    @ApiResponses({
+      	@ApiResponse(message = "Operacion exitosa", code = 200),
+          @ApiResponse(message = "No encontrada", code = 404),
+          @ApiResponse(message = "Sin autorizacion", code = 401),
+          @ApiResponse(message = "Requiere autenticacion de Proxy", code = 407),
+          @ApiResponse(message = "Largo minimo requerido", code = 411),
+          @ApiResponse(message = "Falla interna servidor", code = 500),
+      	@ApiResponse(message = "No implementado", code = 501),
+      	@ApiResponse(message = "Respuesta invalida - Bad gateway", code = 502),
+      	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
+      	@ApiResponse(message = "Gateway Tinme out", code = 504)
+      	})
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dtotprod")
     public List<TipoProductosDTO> findTipoProductoDto(){
         return productoService.findTipoProductoDto();
     }
 
+    @ApiOperation(value = "Genera y descarga valores en un excel")
+    @ApiResponses({
+      	@ApiResponse(message = "Operacion exitosa", code = 200),
+          @ApiResponse(message = "No encontrada", code = 404),
+          @ApiResponse(message = "Sin autorizacion", code = 401),
+          @ApiResponse(message = "Requiere autenticacion de Proxy", code = 407),
+          @ApiResponse(message = "Largo minimo requerido", code = 411),
+          @ApiResponse(message = "Falla interna servidor", code = 500),
+      	@ApiResponse(message = "No implementado", code = 501),
+      	@ApiResponse(message = "Respuesta invalida - Bad gateway", code = 502),
+      	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
+      	@ApiResponse(message = "Gateway Tinme out", code = 504)
+      	})
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/exportar")
     public void exportarExcel(HttpServletResponse response) throws  IOException {
