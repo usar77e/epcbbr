@@ -3,8 +3,11 @@ package cl.epcbbr.backend.model;
 
 import com.sun.istack.NotNull;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "marca")
 public class Marca {
@@ -17,31 +20,4 @@ public class Marca {
     @Column(unique = true, name = "nombre", length = 70)
     private String nombre;
 
-    public Marca() {
-    }
-
-    public Marca(Integer idMarca) {
-        this.idMarca = idMarca;
-    }
-
-    public Marca(Integer idMarca, String nombre) {
-        this.idMarca = idMarca;
-        this.nombre = nombre;
-    }
-
-    public Integer getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(Integer idMarca) {
-        this.idMarca = idMarca;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 }

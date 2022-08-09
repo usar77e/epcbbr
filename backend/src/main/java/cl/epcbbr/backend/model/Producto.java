@@ -1,8 +1,11 @@
 package cl.epcbbr.backend.model;
 import com.sun.istack.NotNull;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -30,64 +33,5 @@ public class Producto {
     @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private DetalleProducto detalleProducto;
 
-    public Producto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public Producto(Integer idProducto, String nombre, String modelo, Marca marca, TipoProducto tipoProducto, DetalleProducto detalleProducto) {
-        this.idProducto = idProducto;
-        this.nombre = nombre;
-        this.modelo = modelo;
-        this.marca = marca;
-        this.tipoProducto = tipoProducto;
-        this.detalleProducto = detalleProducto;
-    }
-
-    public Integer getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
-    public TipoProducto getTipoProducto() {
-        return tipoProducto;
-    }
-
-    public void setTipoProducto(TipoProducto tipoProducto) {
-        this.tipoProducto = tipoProducto;
-    }
-
-    public DetalleProducto getDetalleProducto() {
-        return detalleProducto;
-    }
-
-    public void setDetalleProducto(DetalleProducto detalleProducto) {
-        this.detalleProducto = detalleProducto;
-    }
+    
 }
