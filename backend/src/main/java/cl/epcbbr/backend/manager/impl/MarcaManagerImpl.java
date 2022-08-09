@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cl.epcbbr.backend.dto.MarcaByIdDTO;
 import cl.epcbbr.backend.exception.ModelNoFoundException;
@@ -12,6 +13,7 @@ import cl.epcbbr.backend.model.Marca;
 import cl.epcbbr.backend.repository.MarcaRepository;
 import cl.epcbbr.backend.repository.projections.FindMarcaByIdDTO;
 
+@Service
 public class MarcaManagerImpl implements MarcaManager{
 
 	@Autowired

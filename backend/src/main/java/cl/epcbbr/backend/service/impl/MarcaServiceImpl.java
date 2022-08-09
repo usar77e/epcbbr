@@ -28,14 +28,7 @@ public class MarcaServiceImpl implements MarcaService {
 
     @Override
     public Marca findById(Integer id) {
-        /*Optional<Marca> marca = marcaManager.findById(id);
-        if(marca.isPresent()){
-            return marca.get();
-        } else {
-            throw new ModelNoFoundException("Marca no encontrada");
-        }*/
-    	//temporalmente fuera de servicio
-    	return null;
+        return marcaManager.findById(id);
     }
 
     @Override
