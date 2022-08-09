@@ -1,6 +1,10 @@
 package cl.epcbbr.backend.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import cl.epcbbr.backend.dto.MarcaByIdDTO;
 import cl.epcbbr.backend.model.Marca;
+import cl.epcbbr.backend.repository.projections.FindMarcaByIdDTO;
 import cl.epcbbr.backend.service.MarcaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,6 +22,8 @@ import java.util.List;
 public class MarcaController {
     @Autowired
     private MarcaService marcaService;
+    
+    protected final Logger logger = LogManager.getLogger(getClass().getName());
     
     @ApiOperation(value = "Obtiene la lista de todas las marcas")
     @ApiResponses({
@@ -68,8 +74,32 @@ public class MarcaController {
       	@ApiResponse(message = "Servicio fuera de alcance", code = 503),
       	@ApiResponse(message = "Gateway Tinme out", code = 504)
       	})
-    @PostMapping
+    @PostMapping(value = "/save")
     public @ResponseBody Marca save(@RequestBody Marca marca){
         return marcaService.save(marca);
     }
+    
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<List<MarcaByIdDTO>> findByIdDto(
+			@RequestParam(value = "id", required = true) Integer id) {
+		try {
+			List<MarcaByIdDTO> list = marcaService.findMarcaByIdDTO(id);
+			return new ResponseEntity<List<MarcaByIdDTO>>(list, HttpStatus.OK);
+		} catch (Exception ex) {
+			logger.error("Ha ocurrido un error al realizar la busqueda de credenciales vinculadas al usuario: " + ex.getMessage());
+			return new ResponseEntity<List<MarcaByIdDTO>>(HttpStatus.FAILED_DEPENDENCY);
+		}
+	}
+    
+    @RequestMapping(value = "/searchb", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<List<FindMarcaByIdDTO>> findByIdDtoB(
+			@RequestParam(value = "id", required = true) Integer id) {
+		try {
+			List<FindMarcaByIdDTO> list = marcaService.findMarcaByIdDTOB(id);
+			return new ResponseEntity<List<FindMarcaByIdDTO>>(list, HttpStatus.OK);
+		} catch (Exception ex) {
+			logger.error("Ha ocurrido un error al realizar la busqueda de credenciales vinculadas al usuario: " + ex.getMessage());
+			return new ResponseEntity<List<FindMarcaByIdDTO>>(HttpStatus.FAILED_DEPENDENCY);
+		}
+	}
 }

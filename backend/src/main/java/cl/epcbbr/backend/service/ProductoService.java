@@ -5,7 +5,7 @@ import cl.epcbbr.backend.model.Producto;
 
 import java.util.List;
 
-public interface ProductoService extends ICRUD<Producto>{
+public interface ProductoService extends ICRUDService<Producto>{
 
     List<ProductosTotalDTO> findAllDto();
 

@@ -1,9 +1,9 @@
-package cl.epcbbr.backend.service;
+package cl.epcbbr.backend.manager;
 
 import java.util.List;
 
-public interface ICRUD<E> {
-    List<E> findAll();
+public interface ICRUDManager<E> {
+	List<E> findAll();
 
     E findById(Integer id);
 
