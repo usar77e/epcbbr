@@ -4,6 +4,7 @@ import cl.epcbbr.backend.dto.MarcaByIdDTO;
 import cl.epcbbr.backend.exception.ModelNoFoundException;
 import cl.epcbbr.backend.manager.MarcaManager;
 import cl.epcbbr.backend.model.Marca;
+import cl.epcbbr.backend.model.TipoProducto;
 import cl.epcbbr.backend.repository.projections.FindMarcaByIdDTO;
 import cl.epcbbr.backend.service.MarcaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +57,12 @@ public class MarcaServiceImpl implements MarcaService {
 	public List<FindMarcaByIdDTO> findMarcaByIdDTOB(Integer id_marca){
 		return marcaManager.findMarcaByIdDTOB(id_marca);
 	}
+
+	@Override
+	public Marca getMarcaProductoByNombreDTO(String marca) {
+		// TODO Auto-generated method stub
+		return marcaManager.getMarcaProductoByNombreDTO(marca);
+	}
+	
+	
 }

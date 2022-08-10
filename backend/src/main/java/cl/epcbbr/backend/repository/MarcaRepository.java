@@ -2,6 +2,7 @@ package cl.epcbbr.backend.repository;
 
 import cl.epcbbr.backend.dto.MarcaByIdDTO;
 import cl.epcbbr.backend.model.Marca;
+import cl.epcbbr.backend.model.TipoProducto;
 import cl.epcbbr.backend.repository.projections.FindMarcaByIdDTO;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface MarcaRepository extends JpaRepository<Marca, Integer> {
 	//busqueda por id en base de datos / DTO - Projections
 	@Query(value = "SELECT id_marca, nombre FROM marca WHERE id_marca = :id_marca", nativeQuery = true)
 	public List<FindMarcaByIdDTO> findMarcaByIdDTOB(Integer id_marca);
+	
+	//busqueda por id en base de datos, DTO + tabla relacional
+	@Query(value = "SELECT id_marca, nombre FROM public.marca WHERE nombre  = :marca", nativeQuery = true)
+	public Marca getMarcaProductoByNombreDTO(String marca);
 }

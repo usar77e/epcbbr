@@ -2,7 +2,11 @@ package cl.epcbbr.backend.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.modelmapper.ModelMapper;
+
+import cl.epcbbr.backend.dto.ListadoProductosMarcasDTO;
 import cl.epcbbr.backend.dto.MarcaByIdDTO;
+import cl.epcbbr.backend.dto.TipoProductosDTO;
 import cl.epcbbr.backend.model.Marca;
 import cl.epcbbr.backend.repository.projections.FindMarcaByIdDTO;
 import cl.epcbbr.backend.service.MarcaService;
@@ -22,6 +26,9 @@ import java.util.List;
 public class MarcaController {
     @Autowired
     private MarcaService marcaService;
+    
+    @Autowired
+	private ModelMapper modelMapper;
     
     protected final Logger logger = LogManager.getLogger(getClass().getName());
     
@@ -102,4 +109,31 @@ public class MarcaController {
 			return new ResponseEntity<List<FindMarcaByIdDTO>>(HttpStatus.FAILED_DEPENDENCY);
 		}
 	}
+    
+    @GetMapping(path = "/listaproductos")
+    public ListadoProductosMarcasDTO getProductos(
+    		@RequestParam(value = "marca", required = true) String marca) {
+    	return convertirADTO(marcaService.getMarcaProductoByNombreDTO(marca));
+    }
+    
+  //temporal - de resultar lanzar a service
+  	// conversion de Entidad a DTO / de agregar o sacar datos de la consulta realizarla aca
+  	private ListadoProductosMarcasDTO convertirADTO(Marca marcaIngresada) {
+  		ListadoProductosMarcasDTO marcaDTO = modelMapper.map(marcaIngresada, ListadoProductosMarcasDTO.class);
+  		marcaDTO.setId_marca(marcaIngresada.getIdMarca());
+  		marcaDTO.setMarca_nombre(marcaIngresada.getNombre());
+  		//revisar como reaizar una relacion desde aca  - hacia otra tabla con dto
+  		return marcaDTO;
+  	}
+  	
+  	//conversion de DTO a entidad
+  	private Marca convertirAEntidad(ListadoProductosMarcasDTO dto) {
+  		Marca marca = modelMapper.map(dto, Marca.class);
+  		marca.setIdMarca(dto.getId_marca());
+  		marca.setNombre(dto.getMarca_nombre());
+  		if (dto.getId_marca() != null) {
+  			Marca viejaMarca = marcaService.findById(dto.getId_marca());
+  		}
+  		return marca;
+  	}
 }

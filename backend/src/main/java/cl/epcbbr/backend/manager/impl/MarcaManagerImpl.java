@@ -10,6 +10,7 @@ import cl.epcbbr.backend.dto.MarcaByIdDTO;
 import cl.epcbbr.backend.exception.ModelNoFoundException;
 import cl.epcbbr.backend.manager.MarcaManager;
 import cl.epcbbr.backend.model.Marca;
+import cl.epcbbr.backend.model.TipoProducto;
 import cl.epcbbr.backend.repository.MarcaRepository;
 import cl.epcbbr.backend.repository.projections.FindMarcaByIdDTO;
 
@@ -65,5 +66,12 @@ public class MarcaManagerImpl implements MarcaManager{
 		// TODO Auto-generated method stub
 		return marcaRepository.findMarcaByIdDTOB(id_marca);
 	}
+
+	@Override
+	public Marca getMarcaProductoByNombreDTO(String marca) {
+		// TODO Auto-generated method stub
+		return marcaRepository.getMarcaProductoByNombreDTO(marca);
+	}
+	
 	
 }
