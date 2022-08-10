@@ -23,6 +23,6 @@ public interface MarcaRepository extends JpaRepository<Marca, Integer> {
 	public List<FindMarcaByIdDTO> findMarcaByIdDTOB(Integer id_marca);
 	
 	//busqueda por id en base de datos, DTO + tabla relacional
-	@Query(value = "SELECT id_marca, nombre FROM public.marca WHERE nombre  = :marca", nativeQuery = true)
+	@Query(value = "SELECT * FROM marca as mar INNER JOIN producto AS pro ON mar.id_marca = pro.id_marca WHERE nombre  = :marca", nativeQuery = true)
 	public Marca getMarcaProductoByNombreDTO(String marca);
 }
