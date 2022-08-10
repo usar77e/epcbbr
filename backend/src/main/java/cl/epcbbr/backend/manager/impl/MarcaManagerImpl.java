@@ -67,10 +67,18 @@ public class MarcaManagerImpl implements MarcaManager{
 		return marcaRepository.findMarcaByIdDTOB(id_marca);
 	}
 
+	//trae solo un valor en base a la busqueda de una sola tabla
 	@Override
 	public Marca getMarcaProductoByNombreDTO(String marca) {
 		// TODO Auto-generated method stub
 		return marcaRepository.getMarcaProductoByNombreDTO(marca);
+	}
+
+	//trae los resultados de la union de 2 tablas, una lista
+	@Override
+	public List<Marca> getMarcaProductoByNombreListaDTO(String marca) {
+		// TODO Auto-generated method stub
+		return marcaRepository.getMarcaProductoByNombreListaDTO(marca);
 	}
 	
 	

@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -110,10 +111,27 @@ public class MarcaController {
 		}
 	}
     
-    @GetMapping(path = "/listaproductos")
-    public ListadoProductosMarcasDTO getProductos(
+    @GetMapping(path = "/busqueda")
+    public ListadoProductosMarcasDTO getMarcas(
     		@RequestParam(value = "marca", required = true) String marca) {
     	return convertirADTO(marcaService.getMarcaProductoByNombreDTO(marca));
+    }
+    
+    @GetMapping(path = "/listaproductos")
+    public List<ListadoProductosMarcasDTO> getProductosList(
+    		@RequestParam(value = "marca", required = true) String marca) {
+    	List<ListadoProductosMarcasDTO> dtos = new ArrayList<>();
+    	List<Marca> marcas = marcaService.findAll();
+    	marcas.forEach(marcax -> {
+    		ListadoProductosMarcasDTO marDTO = new ListadoProductosMarcasDTO();
+    		marDTO.setId_marca(marcax.getIdMarca());
+    		marDTO.setMarca_nombre(marcax.getNombre());
+    		//falta asociarlo con producto (Marca->producto)
+    		//marDTO.setModelo(marcax.getProductos())
+    		dtos.add(marDTO);
+    	});
+    	return dtos;
+    	//return convertirADTO(marcaService.getMarcaProductoByNombreDTO(marca));
     }
     
   //temporal - de resultar lanzar a service

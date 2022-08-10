@@ -63,6 +63,13 @@ public class MarcaServiceImpl implements MarcaService {
 		// TODO Auto-generated method stub
 		return marcaManager.getMarcaProductoByNombreDTO(marca);
 	}
+
+	@Override
+	public List<Marca> getMarcaProductoByNombreListaDTO(String marca) {
+		// TODO Auto-generated method stub
+		
+		return marcaManager.getMarcaProductoByNombreListaDTO(marca);
+	}
 	
 	
 }

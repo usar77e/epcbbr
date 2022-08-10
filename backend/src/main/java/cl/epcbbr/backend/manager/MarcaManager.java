@@ -13,4 +13,6 @@ public interface MarcaManager extends ICRUDManager<Marca> {
 	public List<FindMarcaByIdDTO> findMarcaByIdDTOB(Integer id_marca);
 	
 	public Marca getMarcaProductoByNombreDTO(String marca);
+	
+	public List<Marca> getMarcaProductoByNombreListaDTO(String marca);
 }
